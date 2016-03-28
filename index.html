@@ -22,8 +22,95 @@
     <!-- <title>My Blog</title> -->
     <link href="stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
     
-    
+    <style>
+    	.1button {
+  display: inline-block;
+  margin: 0.3em;
+  padding: 1.2em 5em;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 3px;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  border: none; 
+  font-size: 15px;
+  text-align: center;
+}
 
+.1button:hover {
+  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);
+}
+  .red {
+  background-color: #F44336;
+  color: white;
+
+}
+.ripple {
+  position: absolute;
+  background: rgba(0,0,0,.25);
+  border-radius: 100%;
+  transform: scale(0.2);
+  opacity:0;
+  pointer-events: none;
+  -webkit-animation: ripple .75s ease-out;
+  -moz-animation: ripple .75s ease-out;
+  animation: ripple .75s ease-out;
+}
+
+@-webkit-keyframes ripple {
+  from {
+    opacity:1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes ripple {
+  from {
+    opacity:1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  from {
+    opacity:1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+    </style>
+<script>
+	$('.button').mousedown(function (e) {
+    var target = e.target;
+    var rect = target.getBoundingClientRect();
+    var ripple = target.querySelector('.ripple');
+    $(ripple).remove();
+    ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    ripple.style.height = ripple.style.width = Math.max(rect.width, rect.height) + 'px';
+    target.appendChild(ripple);
+    var top = e.pageY - rect.top - ripple.offsetHeight / 2 -  document.body.scrollTop;
+    var left = e.pageX - rect.left - ripple.offsetWidth / 2 - document.body.scrollLeft;
+    ripple.style.top = top + 'px';
+    ripple.style.left = left + 'px';
+    return false;
+});
+
+</script>
     
     <!-- IE backporting -->
     <!--[if lt IE 9]>
@@ -144,7 +231,7 @@
               <li><a href="http://j.mp/idshoplaserdoc">Laser Cutter Documentation</a></li>
               <li><a href="https://docs.google.com/document/d/1DCowe7BTQTlNdeivvRR1eluac4GJLtsqKOGZ1HT-3xI/edit?usp=sharing">Rhino Template</a></li><br/>
               <br>
-              <a class="waves-effect waves-light btn" href="http://bit.ly/iduartsLaser">LC Job Request Form</a>
+              <a class="1button red" href="http://bit.ly/iduartsLaser">LC Job Request Form</a>
           </ul>
         </div>
       </li>
